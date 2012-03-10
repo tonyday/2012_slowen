@@ -6,6 +6,7 @@ gem 'rails', '3.2.2'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'pg', '0.12.2'
+gem 'bcrypt-ruby', '3.0.1'
 
 group :development, :test do
   gem 'rspec-rails', '2.8.1'
@@ -13,6 +14,7 @@ end
 
 group :test do
   gem 'capybara', '1.1.2'
+  gem 'factory_girl_rails', '1.4.0'
 end
 
 

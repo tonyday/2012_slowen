@@ -23,16 +23,8 @@ describe "Authentication" do
 
     describe 'with valid information' do
       let(:user) { FactoryGirl.create(:user) }
-      #before { valid_signin(user) }
-      before do
-        visit signin_path
-        fill_in 'Email', with: user.email
-        fill_in 'Password', with: user.password
-        click_button 'Sign in'
-      end
-      it 'should do stuff' do
-        page.should have_content('Welcome to Slowen')
-      end
+      before { sign_in(user) }
+      it { should have_content('Welcome to Slowen') }
 
       #it { should have_selector('title', test: user.name) }
       #it { should have_link('Profile', href: user_path(user)) }

@@ -2,9 +2,12 @@ require 'spec_helper'
 
 describe "Welcome page" do
 
-  it "should have the content 'Welcome to Slowen'" do
-    visit '/welcome/index'
-    page.should have_content('Welcome to Slowen')
+  subject { page }
+
+  describe 'for non signed-in users' do
+    before { visit '/welcome/index' }
+    it { should have_selector('title', text: 'Sign in') }
+    it { should have_selector('div.flash.notice', text: 'Please sign in.') }
   end
 
 end

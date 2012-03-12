@@ -2,19 +2,19 @@
 <html>
 <head>
   <title><%= full_title(yield(:title)) %></title>
-  <%= render 'layouts/stylesheets' %>
+  <%= stylesheet_link_tag "application", media: "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  <%= render 'layouts/shim' %>
 </head>
 <body>
+<%= render 'layouts/header' %>
 <div class="container">
-  <%= render 'layouts/header' %>
-  <section class="round">
-    <%= display_flash %>
-    <%= yield %>
-  </section>
+  <%= display_flash %>
+  <%= yield %>
   <%= render 'layouts/footer' %>
   <%= debug(params) if Rails.env.development? %>
 </div>
+<%= javascript_tag '$("input:text:visible:first").focus();', defer: true %>
 </body>
 </html>

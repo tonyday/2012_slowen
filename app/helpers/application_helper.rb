@@ -2,7 +2,7 @@ module ApplicationHelper
 
   def display_flash
     flash.inject('') do |result, arr|
-      result += content_tag(:div, arr[1], class: "flash #{arr[0]}")
+      result += content_tag(:div, arr[1], class: "alert alert-#{arr[0]}")
     end.html_safe
   end
 

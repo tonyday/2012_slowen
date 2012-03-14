@@ -1,5 +1,7 @@
 Slowen::Application.routes.draw do
 
+  resources :uploads
+
   get "welcome/index"
   resources :sessions, only: [:new, :create, :destroy]
   match '/signin', to: 'sessions#new'

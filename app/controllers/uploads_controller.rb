@@ -40,17 +40,22 @@ class UploadsController < ApplicationController
   # POST /uploads
   # POST /uploads.json
   def create
-    @upload = Upload.new(params[:upload])
-
-    respond_to do |format|
-      if @upload.save
-        format.html { redirect_to @upload, notice: 'Upload was successfully created.' }
-        format.json { render json: @upload, status: :created, location: @upload }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @upload.errors, status: :unprocessable_entity }
+    file_field = params['form']['file']
+    ofx = OfxParser::OfxParser.parse(file_field)
+    ofx.accounts.each do |account|
+      p account.number
+      p account.class.to_s.demodulize
+      account.statement.transactions.each do |t|
+        puts sprintf("\t%-10s %-40s %8.2f %-30s", t.date.strftime("%Y-%m-%d"), t.payee, t.amount, t.fit_id)
       end
     end
+    render 'new'
+    #@upload = Upload.new
+    #@upload.user = current_user
+    #@upload.file_name = file_field.original_filename
+    #@upload.contents = file_field.read
+    #@upload.save!
+    #redirect_to @upload, notice: 'Upload was successfully updated.'
   end
 
   # PUT /uploads/1

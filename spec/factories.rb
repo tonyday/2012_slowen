@@ -6,4 +6,10 @@ FactoryGirl.define do
     password 'foobar'
   end
 
+  factory :account do
+    name 'Test Account'
+    number '1234567890'
+    ofx_type 'BankAccount'
+  end
+
 end

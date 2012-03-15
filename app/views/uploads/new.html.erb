@@ -1,5 +1,9 @@
 <h1>New upload</h1>
 
-<%= render 'form' %>
+<%= form_tag(uploads_path, multipart: true) do %>
+    Upload file: <%= file_field(:form, :file) %>
+    <br/>
+    <%= submit_tag("Upload file") %>
+<% end %>
 
 <%= link_to 'Back', uploads_path %>
